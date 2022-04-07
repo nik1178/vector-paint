@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width = device-widt, initial-scale = 1">
+        <title> JavaScript Paint App</title>
+        <link rel="stylesheet" type="text/css" href="mainstyle.css">
+        <script src="jstut7.js"></script>
+    </head>
+    <body>
+        <div class="wrapper">
+        
+            <div class= "toolbar">
+                <a class="selected" href="#" id="open" onclick="OpenImage()">
+                <img src="open-icon.png"></a>
+                <a href="#" id="save" onclick="SaveImage()">
+                <img src="save-icon.png"></a>
+                <a href="#" id="brush" onclick="ChangeTool('brush')">
+                <img src="brush-icon.png"></a>
+                <a href="#" id="line" onclick="ChangeTool('line')">
+                <img src="line-icon.png"></a>                
+                <a href="#" id="rectangle" onclick="ChangeTool('rectangle')">
+                <img src="rectangle-icon.png"></a>
+                <a href="#" id="circle" onclick="ChangeTool('circle')">
+                <img src="circle-icon.png"></a>
+                <a href="#" id="ellipse" onclick="ChangeTool('ellipse')">
+                <img src="ellipse-icon.png"></a>
+                <a href="#" id="polygon" onclick="ChangeTool('polygon')">
+                <img src="polygon-icon.png"></a>
+            </div><br>
+
+            <canvas id="my-canvas" width="600" height="600"></canvas>
+            
+            <div class="color">
+                <a href="#" id="yellow" onclick="ChangeColor()">
+                    <button style="background-color:rgb(90, 90 ,90);color:yellow;border-radius:5px;border-color:yellow">Yellow</button></a>
+                <a href="#" id="red" onclick="ChangeColor()">
+                    <button style="background-color:rgb(90, 90 ,90);color:red;border-radius:5px;border-color:red">Red</button></a>
+                <a href="#" id="orange" onclick="ChangeColor()">
+                    <button style="background-color:rgb(90, 90 ,90);color:orange;border-radius:5px;border-color:orange">Orange</button></a>
+                <a href="#" id="purple" onclick="ChangeColor()">
+                    <button style="background-color:rgb(90, 90, 90);color:purple;border-radius:5px;border-color:purple">Purple</button></a>
+                <a href="#" id="blue" onclick="ChangeColor()">
+                    <button style="background-color:rgb(90, 90 ,90);color:blue;border-radius:5px;border-color:blue">Blue</button></a>
+                <a href="#" id="green" onclick="ChangeColor()">
+                    <button style="background-color:rgb(90, 90 ,90);color:green;border-radius:5px;border-color:green">Green</button></a>
+                <a href="#" id="greenyellow" onclick="ChangeColor()">
+                    <button style="background-color:rgb(90, 90 ,90);color:greenyellow;border-radius:5px;border-color:greenyellow">GreenYellow</button></a>
+                <a href="#" id="pink" onclick="ChangeColor()">
+                    <button style="background-color:rgb(90, 90 ,90);color:pink;border-radius:5px;border-color:pink">Pink</button></a>
+                <a href="#" id="aqua" onclick="ChangeColor()">
+                    <button style="background-color:rgb(90, 90 ,90);color:aqua;border-radius:5px;border-color:aqua">Aqua</button></a>
+                <a href="#" id="aqua" onclick="ChangeColor()">
+                    <button style="background-color:rgb(90, 90 ,90);color:brown;border-radius:5px;border-color:brown">Brownc</button></a>
+                <a href="#" id="aqua" onclick="ChangeColor()">
+                    <button style="background-color:rgb(90, 90 ,90);color:grey;border-radius:5px;border-color:grey">Grey</button></a>
+
+            </div>
+
+            <div id="img-data-div">
+            <a href="#" id="img-file" download="image.png">Download Image</a>
+            </div>
+
+
+        </div>
+
+    </body>
+</html>
