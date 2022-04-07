@@ -358,7 +358,7 @@ function ReactToMouseMove(e){
         }
     }
 };
- 
+
 function ReactToMouseUp(e){
     canvas.style.cursor = "default";
     loc = GetMousePosition(e.clientX, e.clientY);
@@ -367,7 +367,7 @@ function ReactToMouseUp(e){
     dragging = false;
     usingBrush = false;
 }
- 
+
 // Saves the image in your default download directory
 function SaveImage(){
     // Get a reference to the link element 
@@ -377,7 +377,7 @@ function SaveImage(){
     // Reference the image in canvas for download
     imageFile.setAttribute('href', canvas.toDataURL());
 }
- 
+
 function OpenImage(){
     let img = new Image();
     // Once the image is loaded clear the canvas and draw it
