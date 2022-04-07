@@ -24,7 +24,10 @@ let brushXPoints = new Array();
 let brushYPoints = new Array();
 // Stores whether mouse is down
 let brushDownPos = new Array();
- 
+
+//Stores color of each point
+let brushColorPoints = new Array();
+
 // Stores size data used to create rubber band shapes
 // that will redraw as the user moves the mouse
 class ShapeBoundingBox{
@@ -65,10 +68,10 @@ let shapeBoundingBox = new ShapeBoundingBox(0,0,0,0);
 let mousedown = new MouseDownPos(0,0);
 // Holds x & y location of the mouse
 let loc = new Location(0,0);
- 
+
 // Call for our function to execute when page is loaded
 document.addEventListener('DOMContentLoaded', setupCanvas);
- 
+
 function setupCanvas(){
     // Get reference to canvas element
     canvas = document.getElementById('my-canvas');
@@ -83,7 +86,7 @@ function setupCanvas(){
     // Execute ReactToMouseUp when the mouse is clicked
     canvas.addEventListener("mouseup", ReactToMouseUp);
 }
- 
+
 function ChangeTool(toolClicked){
     document.getElementById("open").className = "";
     document.getElementById("save").className = "";
@@ -116,7 +119,6 @@ function ChangeColor(colorClicked){
     document.getElementById(colorClicked).className = "color";
 
     strokeColor = colorClicked;
-
 }
 
 
@@ -128,25 +130,25 @@ function GetMousePosition(x,y){
     let canvasSizeData = canvas.getBoundingClientRect();
     return { x: (x - canvasSizeData.left) * (canvas.width  / canvasSizeData.width),
         y: (y - canvasSizeData.top)  * (canvas.height / canvasSizeData.height)
-      };
+    };
 }
- 
+
 function SaveCanvasImage(){
     // Save image
     savedImageData = ctx.getImageData(0,0,canvas.width,canvas.height);
 }
- 
+
 function RedrawCanvasImage(){
     // Restore image
     ctx.putImageData(savedImageData,0,0);
 }
- 
+
 function UpdateRubberbandSizeData(loc){
     // Height & width are the difference between were clicked
     // and current mouse position
     shapeBoundingBox.width = Math.abs(loc.x - mousedown.x);
     shapeBoundingBox.height = Math.abs(loc.y - mousedown.y);
- 
+
     // If mouse is below where mouse was clicked originally
     if(loc.x > mousedown.x){
  
@@ -239,17 +241,13 @@ function getPolygon(){
 }
 
 function drawColor(){
-    if(strokeColor === "black"){
-        fillColor = "black";
-    } else if(strokeColor === "yellow"){
-        fillColor = "yellow";
-    }
-    
+    fillColor = strokeColor;
 }
- 
+
 // Called to draw the line
 function drawRubberbandShape(loc){
     
+    ctx.strokeStyle=strokeColor;
     if(currentTool === "brush"){
         // Create paint brush
         DrawBrush();
@@ -299,13 +297,15 @@ function AddBrushPoint(x, y, mouseDown){
     brushYPoints.push(y);
     // Store true that mouse is down
     brushDownPos.push(mouseDown);
+
+    brushColorPoints.push(strokeColor);
 }
  
 // Cycle through all brush points and connect them with lines
 function DrawBrush(){
     for(let i = 1; i < brushXPoints.length; i++){
         ctx.beginPath();
- 
+        ctx.strokeStyle = brushColorPoints[i];
         // Check if the mouse button was down at this point
         // and if so continue drawing
         if(brushDownPos[i]){
